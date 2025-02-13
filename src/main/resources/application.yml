@@ -1,0 +1,28 @@
+# Example Public and Private Key Pairs, be careful and change it before deployment.
+AUTH_PUBLIC_KEY: "-----BEGIN PUBLIC KEY-----MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvZwSegC6KUjmMHBeBlzugiWBatgMeqqhpWugH24ZXcFaL3PG8Vpcqf9MYvaH0/FUKghrQh2kqFHs7gOANuVNFi25s8xGAqT/sYTNQX6oVPM+E12sOTlQ8rTnl029mFeCznnuc3DJnBQY/Qxsi5ABpBx/8CWQp0pEO/W4w8NfHxUKe6/t9fR+yWw40E9Tr6XB+TxP58HOvwlzYnpPdqq4lQ//voJ504QYVWYXpIRcsZgzkVAIXJo5mvPuGYqV8J9ENim1CUaAVgqFnTfax54YoMn/i3BlcJJ8h6U8EllOStwbVp+qcl7V1pSimv2u5KQzHC1rItCJz+YHEEaucQelpQIDAQAB-----END PUBLIC KEY-----"
+AUTH_PRIVATE_KEY: "-----BEGIN PRIVATE KEY-----MIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQC9nBJ6ALopSOYwcF4GXO6CJYFq2Ax6qqGla6AfbhldwVovc8bxWlyp/0xi9ofT8VQqCGtCHaSoUezuA4A25U0WLbmzzEYCpP+xhM1BfqhU8z4TXaw5OVDytOeXTb2YV4LOee5zcMmcFBj9DGyLkAGkHH/wJZCnSkQ79bjDw18fFQp7r+319H7JbDjQT1OvpcH5PE/nwc6/CXNiek92qriVD/++gnnThBhVZhekhFyxmDORUAhcmjma8+4ZipXwn0Q2KbUJRoBWCoWdN9rHnhigyf+LcGVwknyHpTwSWU5K3BtWn6pyXtXWlKKa/a7kpDMcLWsi0InP5gcQRq5xB6WlAgMBAAECggEBAIrG06MmKxsSdyBW7gqcNBlfmBR6Ys/ZWYx4dG7sp3Y+kWKPy7lU2OO3rtHz/MA8LszA8rgmeCCWLeKa/1muhLhJ6VRWm5tN5rOoLo7URCJBElscQXR0pfGuRJ8yUCVTT7MN/V/S2kz5TLzRPhT75qeWEHHVHMXEjqKQG5Z0xYc6HI0p3xwrH936hpFBtgv3by4NT8ur0WdJZ0yBfzFDSjcpGpED9I5845raD/DnFMk6wd6Ujg02ILuylzY7fYXZGnfxsJitNvadpFmTfcI3C5BOAZyhgNTn7+W/Z3ZzdHpvPFfDZRE5A5FXx6oGrc6gu/1sZEq7guhs6sMRcizKb7UCgYEA7/esrlE6UsIdUw3ESEgShxHn61QhwGWXMHv2yFeHmNiAW2pM31rdJZlb6E32IE+3rWZv/CbZ7JdRMaNzJ1YRRhULWWlPlRs68f/0zn8dK1v5/aWUrHoc9vjg5KwOJA8HKOXpZk9WLqAMG/4Mh34B/3YL4f0Nw06/6Mf5O2X7K3sCgYEAykcYCObQZ98uuR9WC+cUMVDW7nKR5CjrAgTcbudR/FK6BOgdxUhJLTKLW4SbxazQ+3JBXVQMYqw1YaiSC6+YWaHMV1/pLDQLrp+rdDeyzWOWheOkj+cqGalDeRfFTtic9otghdUBotnNEEbX+Y3usZc3pgEG/VOWfOWar2iimV8CgYAcIboBuY4P06fia7O+EYzyfrvkj7lhN8ewrGey9ufzmDX8AYs/iARy+vaWVkVrZk0PK/om4lsb7GVdX18JloJx59erxLfKsCWJ50rIxogh5Cd7f+TdD3fD0Et1I2KJAaYCOmnRT623y5V/1pmbbL9JNoqQFL1/TwUagg8K0prObwKBgQCy4RQcKyH5+aB0DYYmmH9+7SJlU+Q4hQbujiXx3ZbfMLlYRXyuTjKISb57fFXVBfL5qhyrz/vz9p5ucohU1UBBY5g1XJfzg0MhdgpFiEwS3hLq7FlG+QJ+FvWYTLEr/NsyHCeLssbzoPB7iGrOQfnoCvYnU5k+xYC7isC0hi/kuQKBgQDJ270qohs07B+DL+w4do9swmSBvUR13QZcQYoXcgnf8JpZ5mNoCuAnDVskc4BwdRJF84sDtuhxuLMgRfRzZMYbSZGLPmmoneSyA9NqsukSIxoZEvwBvdT9bkkM+YjhWz+ajnkqB3Zvx11bL113thDHyV1rdanVi5f1mnMjO3EkVQ==-----END PRIVATE KEY-----"
+
+auth:
+  issuer: ${AUTH_ISSUER:EXAMPLE_ISSUER}
+  accessTokenExpireMinute: ${AUTH_ACCESS_TOKEN_EXPIRE_MINUTE:60}
+  refreshTokenExpireDay: ${AUTH_REFRESH_TOKEN_EXPIRE_DAY:1}
+  publicKey: ${AUTH_PUBLIC_KEY}
+  privateKey: ${AUTH_PRIVATE_KEY}
+
+spring:
+  application:
+    name: auth-management-service
+
+  datasource:
+    url: jdbc:postgresql://${DATABASE_IP}:${DATABASE_PORT}/${DATABASE_NAME}
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+    hibernate:
+      ddl-auto: update
